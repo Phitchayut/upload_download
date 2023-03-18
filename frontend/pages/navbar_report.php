@@ -22,7 +22,7 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="report_download.php"><i class="fa-solid fa-eye"></i> ดูข้อมูลผู้ดาวน์โหลดเอกสาร</a>
+          <a class="nav-link" href="index.php"><i class="fa-solid fa-house"></i> กลับสู่หน้าหลัก</a>
         </li>
       </ul>
       <!-- Left links -->

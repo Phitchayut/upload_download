@@ -76,7 +76,7 @@ if (!isset($_SESSION['admin_login'])) {
             <div class="card-body">
                 <div class="my-3">
                     <button type="button" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#upload_file">
-                        Upload File
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Upload File
                     </button>
                 </div>
                 <?php require_once("modal_upload_file.php") ?>

@@ -49,7 +49,7 @@ require_once("../../backend/config/connect.php")
                 <form action="" id="form_insert" method="post">
                     <input id="idfile" type="hidden" value="<?= $row['id'] ?>">
                     <input id="file" type="hidden" value="<?= $row['doc_file'] ?>">
-                    <input id="file_name" name="file_name" type="hidden" value="<?= $row['doc_name'] ?>">
+                    <input id="file_name" name="file_name" type="hidden" value="<?= $row['doc_file'] ?>">
                     <div class="row">
                         <div class="col-sm-2">
                             <label for="title_name" class="form-label">คำนำหน้าชื่อ<span class="text-danger">*</span></label>
