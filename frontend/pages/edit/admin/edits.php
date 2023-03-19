@@ -79,17 +79,6 @@ require_once '../../../../backend/config/connect.php';
 
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script>
-        let imgInput = document.getElementById('imgInput');
-        let previewImg = document.getElementById('previewImg');
-
-        imgInput.onchange = evt => {
-            const [file] = imgInput.files;
-            if (file) {
-                previewImg.src = URL.createObjectURL(file)
-            }
-        }
-    </script>
-    <script>
         $(document).ready(function() {
             $("#status_input").change(function() {
                 if (this.checked) {

@@ -101,8 +101,8 @@ if (!isset($_SESSION['admin_login'])) {
                                                         "./edit/admin/edits.php?id=" . $row['id'] :
                                                         "./edit/admin/edit.php?id=" . $row['id'] ?>" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <a href="<?= $row['status_input'] == 1 ?
-                                                        "./report/admin/view_report.php?doc_file=". $row['doc_file'] :
-                                                        "./report/admin/view_noinput.php?doc_file=". $row['doc_file'] ."&id=". $row['id'] ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                                        "./report/admin/view_report.php?doc_file=" . $row['doc_file'] :
+                                                        "./report/admin/view_noinput.php?doc_file=" . $row['doc_file'] . "&id=" . $row['id'] ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
                                     </td>
                                 <?php } ?>
                         </tbody>
@@ -115,6 +115,17 @@ if (!isset($_SESSION['admin_login'])) {
     </div>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script>
+        let imgInput = document.getElementById('imgInput');
+        let previewImg = document.getElementById('previewImg');
+
+        imgInput.onchange = evt => {
+            const [file] = imgInput.files;
+            if (file) {
+                previewImg.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
     <script>
         $(document).ready(function() {
             // check docname
