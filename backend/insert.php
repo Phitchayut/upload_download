@@ -5,6 +5,10 @@ session_start();
 require_once "./config/connect.php";
 
 if (isset($_POST['submit'])) { 
+$user_id = $_POST['user_id'];
+$username = $_POST['username'];
+$user_email = $_POST['user_email'];
+$role = $_POST['role'];
 $doc_name = $_POST['doc_name'];
 if (isset($_POST['status_input'])) {
     $status_input = 1;
@@ -30,12 +34,16 @@ if($new_image_name == ''){
     $new_image_name = "No header!";
 }
 
-        $stmt = $conn->prepare("INSERT INTO tbl_upload(doc_name,doc_file,header_img,status_input) VALUES(:doc_name,:doc_file,:header_img,:status_input)");
+        $stmt = $conn->prepare("INSERT INTO tbl_upload(doc_name,doc_file,header_img,status_input,user_id,username,user_email) VALUES(:doc_name,:doc_file,:header_img,:status_input,:user_id,:username,:user_email)");
         $stmt->bindParam(":doc_name", $doc_name);
         $stmt->bindParam(":doc_file", $new_file_name);
         $stmt->bindParam(":header_img", $new_image_name);
         $stmt->bindParam(":status_input", $status_input);
+        $stmt->bindParam(":user_id", $user_id);
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":user_email", $user_email);
         $stmt->execute();
+        $location = ($role == 'admin') ? "../frontend/pages/index.php" : "../frontend/pages/index_user.php";
         if ($stmt) {
             echo "<script>
                     $(document).ready(function() {
@@ -48,7 +56,7 @@ if($new_image_name == ''){
                         });
                     })
                 </script>";
-            header("refresh:1; url=../frontend/pages/index.php");
+            header("refresh:1; url=$location");
         } else {
             $_SESSION['error'] = "Data has not been inserted succesfully";
         }

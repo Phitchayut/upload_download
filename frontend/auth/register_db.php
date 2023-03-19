@@ -7,7 +7,7 @@
         $department = $_POST['department'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $role = 'admin';
+        $role = 'user';
 
         if (empty($username)) {
             $_SESSION['error'] = 'กรุณากรอก Username';

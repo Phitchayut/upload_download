@@ -32,7 +32,7 @@
                                 header("location: ../pages/index.php");
                             } else {
                                 $_SESSION['user_login'] = $row['id'];
-                                header("location: ../pages/page_user.php");
+                                header("location: ../pages/index_user.php");
                             }
                         } else {
                             $_SESSION['error'] = "รหัสผ่านผิด";

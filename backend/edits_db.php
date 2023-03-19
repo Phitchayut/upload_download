@@ -8,6 +8,7 @@ require_once './config/connect.php';
 
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
+    $role = $_POST['role'];
     $doc_name = $_POST['doc_name'];
     $old_doc_file = $_POST['old_doc_file'];
     $old_header_img = $_POST['old_header_img'];
@@ -37,6 +38,7 @@ if (isset($_POST['update'])) {
     $stmt->bindParam(":doc_file", $new_file_name);
     $stmt->bindParam(":header_img", $new_image_name);
     $stmt->execute();
+    $location = ($role == 'admin') ? "../frontend/pages/index.php" : "../frontend/pages/index_user.php";
     if ($stmt) {
         echo "<script>
                             $(document).ready(function() {
@@ -49,7 +51,7 @@ if (isset($_POST['update'])) {
                                 });
                             })
                         </script>";
-        header("refresh:1; url=../frontend/pages/index.php");
+        header("refresh:1; url=$location");
     } else {
         $_SESSION['error'] = "Data has not been inserted succesfully";
     }

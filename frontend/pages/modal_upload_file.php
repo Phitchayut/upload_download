@@ -13,6 +13,13 @@
             <input type="text" id="doc_name" name="doc_name" class="form-control" required />
             <label class="form-label" for="doc_name">กรอกชื่อเอกสาร</label>
           </div>
+          <!-- post hidden -->
+          <input type="hidden" name="user_id" value="<?=  $rowrole['id'] ?>">
+          <input type="hidden" name="username" value="<?=  $rowrole['username'] ?>">
+          <input type="hidden" name="user_email" value="<?=  $rowrole['email'] ?>">
+          <input type="hidden" name="role" value="<?=  $rowrole['role'] ?>">
+
+
           <input type="file" name="doc_file" class="form-control" id="doc_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.pdf" required />
           <div class="form-check mt-4">
             <input class="form-check-input" name="status_input" type="checkbox" value="1" id="status_input" />

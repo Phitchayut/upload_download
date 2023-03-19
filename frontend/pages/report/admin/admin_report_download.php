@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../backend/config/connect.php';
+require_once '../../../../backend/config/connect.php';
 if (!isset($_SESSION['admin_login'])) {
     $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ!';
     header('location: ../../index.php');
@@ -33,7 +33,7 @@ if (!isset($_SESSION['admin_login'])) {
         $user_id = $_SESSION['admin_login'];
         $stmt = $conn->query("SELECT * FROM tbl_user WHERE id = $user_id");
         $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $rowrole = $stmt->fetch(PDO::FETCH_ASSOC);
     }
     ?>
     <div class="container">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../backend/config/connect.php';
-if (!isset($_SESSION['admin_login'])) {
+if (!isset($_SESSION['user_login'])) {
     $_SESSION['error'] = 'กรุณาเข้าสู่ระบบ!';
     header('location: ../../index.php');
 }
@@ -37,15 +37,15 @@ if (!isset($_SESSION['admin_login'])) {
 
 <body class="bg-light">
     <?php
-    if (isset($_SESSION['admin_login'])) {
-        $user_id = $_SESSION['admin_login'];
+    if (isset($_SESSION['user_login'])) {
+        $user_id = $_SESSION['user_login'];
         $stmt = $conn->query("SELECT * FROM tbl_user WHERE id = $user_id");
         $stmt->execute();
         $rowrole = $stmt->fetch(PDO::FETCH_ASSOC);
     }
     ?>
     <div class="container">
-        <?php require_once("../components/navbar_admin.php") ?>
+        <?php require_once("../components/navbar_user.php") ?>
     </div>
     <div class="container">
         <div class="card mt-2">
@@ -65,14 +65,14 @@ if (!isset($_SESSION['admin_login'])) {
                                 <th class="text-center">ประเภท</th>
                                 <th class="text-center">Shared Link</th>
                                 <th class="text-center">จำนวนการดาวน์โหลด</th>
-                                <th class="text-center">ผู้ที่ Upload</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
                             <?php
                             //คิวรี่ข้อมูลมาแสดงในตาราง
-                            $stmt = $conn->prepare("SELECT * FROM tbl_upload");
+                            $stmt = $conn->prepare("SELECT * FROM tbl_upload WHERE user_id = :user_id");
+                            $stmt->bindParam(':user_id', $user_id);
                             $stmt->execute();
                             $result = $stmt->fetchAll();
                             $i = 0;
@@ -95,14 +95,13 @@ if (!isset($_SESSION['admin_login'])) {
                                                         "download.php?id=" . $row['id'] ?>" class="btn btn-info btn-sm copy_text"><i class="fa-solid fa-copy"></i></a>
                                     </td>
                                     <td><?= $row['count_download']; ?></td>
-                                    <td><?= $row['username']; ?></td>
                                     <td>
                                         <a href="<?= $row['status_input'] == 1 ?
-                                                        "./edit/admin/edits.php?id=" . $row['id'] :
-                                                        "./edit/admin/edit.php?id=" . $row['id'] ?>" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                        "./edit/users/edits.php?id=" . $row['id'] :
+                                                        "./edit/users/edit.php?id=" . $row['id'] ?>" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i></a>
                                         <a href="<?= $row['status_input'] == 1 ?
-                                                        "./report/admin/view_report.php?doc_file=". $row['doc_file'] :
-                                                        "./report/admin/view_noinput.php?doc_file=". $row['doc_file'] ."&id=". $row['id'] ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                                        "./report/users/view_report.php?doc_file=" . $row['doc_file'] :
+                                                        "./report/users/view_noinput.php?doc_file=" . $row['doc_file'] . "&id=" . $row['id'] ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i></a>
                                     </td>
                                 <?php } ?>
                         </tbody>
