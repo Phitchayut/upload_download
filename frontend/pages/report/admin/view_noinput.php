@@ -37,7 +37,7 @@ if (!isset($_SESSION['admin_login'])) {
     }
     ?>
     <div class="container">
-        <?php require_once("../../../components/navbar_admin.php") ?>
+        <?php require_once("navbar_admin.php") ?>
     </div>
     <?php
     if (isset($_GET['doc_file']) && $_GET['id']) {

@@ -37,7 +37,7 @@ if (!isset($_SESSION['user_login'])) {
     }
     ?>
     <div class="container">
-        <?php require_once("../../../components/navbar_user.php") ?>
+        <?php require_once("navbar_user.php") ?>
     </div>
     <?php
     if (isset($_GET['doc_file']) && $_GET['id']) {

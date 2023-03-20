@@ -14,13 +14,14 @@ if (!isset($_SESSION['admin_login'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>รายงานผู้ดาวน์โหลดเอกสาร</title>
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../../../style.css">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <!-- dataTable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
@@ -42,7 +43,21 @@ if (!isset($_SESSION['admin_login'])) {
     <div class="container">
         <div class="card mt-2">
             <div class="card-body">
-                <div class="table-responsive mt-3">
+
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2 mb-2">
+                        <input type="text" name="from_date" id="from_date" class="form-control dateFilter" placeholder="From Date" />
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <input type="text" name="to_date" id="to_date" class="form-control dateFilter" placeholder="To Date" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="button" name="search" id="btn_search" value="Search" class="btn btn-primary" />
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="table-responsive mt-3" id="search_data">
                     <table class="table table table-bordered table-striped text-center" id="myTable" style="width:100%">
                         <thead>
                             <tr>
@@ -74,7 +89,7 @@ if (!isset($_SESSION['admin_login'])) {
                                     <td class="text-start"><?= $row['email'] ?></td>
                                     <td><?= $row['career'] ?></td>
                                     <td><?= $row['file_name'] ?></td>
-                                    <td><?= date('d/m/Y', strtotime($timestamp)) ?></td>
+                                    <td><?= date('Y-m-d', strtotime($timestamp)) ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -99,6 +114,7 @@ if (!isset($_SESSION['admin_login'])) {
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script>
         $(document).ready(function() {
             // datatable
@@ -116,8 +132,33 @@ if (!isset($_SESSION['admin_login'])) {
                     className: 'btn-success'
                 }]
             });
+
+            $('.dateFilter').datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+
+            $('#btn_search').click(function() {
+                var from_date = $('#from_date').val();
+                var to_date = $('#to_date').val();
+                if (from_date != '' && to_date != '') {
+                    $.ajax({
+                        url: "search.php",
+                        method: "POST",
+                        data: {
+                            from_date: from_date,
+                            to_date: to_date
+                        },
+                        success: function(data) {
+                            $('#search_data').html(data);
+                        }
+                    });
+                } else {
+                    alert("Please Select the Date");
+                }
+            });
         })
     </script>
+
 </body>
 
 </html>

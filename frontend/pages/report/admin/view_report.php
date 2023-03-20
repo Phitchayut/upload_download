@@ -37,7 +37,7 @@ if (!isset($_SESSION['admin_login'])) {
     }
     ?>
     <div class="container">
-    <?php require_once("../../../components/navbar_admin.php") ?>
+    <?php require_once("navbar_admin.php") ?>
     </div>
     <?php
     if (isset($_GET['doc_file'])) {
@@ -48,6 +48,19 @@ if (!isset($_SESSION['admin_login'])) {
         <div class="card mt-2">
             <div class="card-body">
                 <h3 class="text-center">ชื่อไฟล์เอกสาร <?php echo $doc_file ?></h3>
+                <div class="d-flex justify-content-center">
+                    <div class="card shadow bg-body rounded border-0 mt-2" style="width: 50%; height: 150px">
+                        <div class="card-body text-center">
+                            <p class="">มีผู้ดาวน์โหลดเอกสารนี้ทั้งหมด</p>
+                            <?php
+                                $sql = "SELECT COUNT(*) FROM tbl_download WHERE file_name = '$doc_file'";
+                                $stmt = $conn->query($sql);
+                                $countfile = $stmt->fetchColumn();
+                            ?>
+                            <p class="fw-bold fs-1"> <?= $countfile ?> ครั้ง</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="table-responsive mt-3">
                     <table class="table table table-bordered table-striped text-center" id="myTable" style="width:100%">
                         <thead>
@@ -81,7 +94,7 @@ if (!isset($_SESSION['admin_login'])) {
                                     <td class="text-start"><?= $row['email'] ?></td>
                                     <td><?= $row['career'] ?></td>
                                     <td><?= $row['file_name'] ?></td>
-                                    <td><?= date('d/m/Y', strtotime($timestamp)) ?></td>
+                                    <td><?= $row['created_at'] ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -107,6 +120,25 @@ if (!isset($_SESSION['admin_login'])) {
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
+        <script>
+        $(document).ready(function() {
+            // datatable
+            $('#myTable').DataTable({
+                "dom": "<'row'<'col-sm-6 mt-1'B><'col-sm-6 text-end'>>" + "<'row'<'col-sm-6 mt-1'l><'col-sm-6 mt-1 text-end'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-4'i><'col-sm-4 text-center'><'col-sm-4'p>>",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                buttons: [{
+                    extend: 'excel',
+                    text: 'ดาวน์โหลดข้อมูล <i class="fa-solid fa-download"></i>',
+                    className: 'btn-success'
+                }]
+            });
+        })
+    </script>
 </body>
 
 </html>

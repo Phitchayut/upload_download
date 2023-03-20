@@ -20,7 +20,7 @@
           <input type="hidden" name="role" value="<?=  $rowrole['role'] ?>">
 
 
-          <input type="file" name="doc_file" class="form-control" id="doc_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.pdf" required />
+          <input type="file" name="doc_file" class="form-control" id="doc_file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required />
           <div class="form-check mt-4">
             <input class="form-check-input" name="status_input" type="checkbox" value="1" id="status_input" />
             <label class="form-check-label" for="status_input">เลือกว่าให้กรอกข้อมูลหรือไม่!</label>

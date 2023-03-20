@@ -38,7 +38,7 @@ require_once("../../backend/config/connect.php")
     }
     ?>
     <div class="container">
-        <div class="header">
+        <div class="header d-flex justify-content-center">
             <img src="../upload/header/<?= $row['header_img']; ?>" alt="header image" class="img-fluid">
         </div>
         <div class="mt-3 text-center">
@@ -53,7 +53,7 @@ require_once("../../backend/config/connect.php")
                     <div class="row">
                         <div class="col-sm-2">
                             <label for="title_name" class="form-label">คำนำหน้าชื่อ<span class="text-danger">*</span></label>
-                            <input autocomplete="off" class="form-control" list="datalistOptions" id="title_name" name="title_name" placeholder="คำนำหน้าชื่อ..">
+                            <input class="form-control" list="datalistOptions" id="title_name" name="title_name" placeholder="คำนำหน้าชื่อ..">
                             <datalist id="datalistOptions">
                                 <option value="นาย">
                                 <option value="นางสาว">
@@ -62,33 +62,33 @@ require_once("../../backend/config/connect.php")
                         </div>
                         <div class="col-sm-5">
                             <label for="first_name" class="form-label">ชื่อ<span class="text-danger">*</span></label>
-                            <input autocomplete="off" type="text" class="form-control" id="first_name" name="first_name" placeholder="กรุณากรอกชื่อ..." require>
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="กรุณากรอกชื่อ..." require>
                         </div>
                         <div class="col-sm-5">
                             <label for="last_name" class="form-label">นามสกุล<span class="text-danger">*</span></label>
-                            <input autocomplete="off" type="text" class="form-control" id="last_name" name="last_name" placeholder="กรุณากรอกนามสกุล..." require>
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="กรุณากรอกนามสกุล..." require>
                         </div>
                         <!-- row -->
                         <div class="col-sm-6 mt-3">
                             <label for="company" class="form-label">บริษัท/สังกัดสำนักงาน <span class="text-danger">*</span></label>
 
-                            <input autocomplete="off" class="form-control" list="companyOptions" id="company" name="company" placeholder="กรณีท่านไม่ได้สังกัดสำนักงาน กรุณาระบุ “อิสระ”">
+                            <input class="form-control" list="companyOptions" id="company" name="company" placeholder="กรณีท่านไม่ได้สังกัดสำนักงาน กรุณาระบุ “อิสระ”">
                             <datalist id="companyOptions">
                                 <option value="อิสระ">
                             </datalist>
                         </div>
                         <div class="col-sm-6 mt-3">
                             <label for="mobile_phone" class="form-label">เบอร์โทรศัพท์มือถือ<span class="text-danger">*</span></label>
-                            <input autocomplete="off" type="text" class="form-control" id="mobile_phone" name="mobile_phone" placeholder="กรุณากรอกเบอร์โทรศัพท์มือถือ..." require>
+                            <input type="text" class="form-control" id="mobile_phone" name="mobile_phone" placeholder="กรุณากรอกเบอร์โทรศัพท์มือถือ..." require>
                         </div>
                         <!-- row -->
                         <div class="col-sm-6 mt-3">
                             <label for="email" class="form-label">อีเมล<span class="text-danger">*</span></label>
-                            <input autocomplete="off" type="text" class="form-control" id="email" name="email" placeholder="กรุณากรอกอีเมล..." require>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="กรุณากรอกอีเมล..." require>
                         </div>
                         <div class="col-sm-6 mt-3">
                             <label for="emailcf" class="form-label">ยืนยันอีเมล<span class="text-danger">*</span></label>
-                            <input autocomplete="off" type="text" class="form-control" id="emailcf" name="emailcf" placeholder="กรุณายืนยันอีเมล..." require>
+                            <input type="text" class="form-control" id="emailcf" name="emailcf" placeholder="กรุณายืนยันอีเมล..." require>
                         </div>
 
                         <!-- row -->
@@ -129,8 +129,8 @@ require_once("../../backend/config/connect.php")
                         <!-- row -->
                         <div class="col-sm-12">
                             <div class="form-check mt-3">
-                                <label class="form-check-label text-danger" style="font-size: 15px;"><span class="text-danger">*</span> กรุณาอ่านเพิ่มเพื่อให้ความยินยอมเกี่ยวกับข้อมูลส่วนบุคคล
-                                    <button id="readmore" class="btn btn-warning btn-sm">อ่านเพิ่ม</button>
+                                <label class="form-check-label text-danger" style="font-size: 15px;"> กรุณาให้ความยินยอมเกี่ยวกับข้อมูลส่วนบุคคล
+                                    <input type="button" id="readmore" name="readmore" class="btn btn-warning btn-sm" value="อ่านเพิ่ม" require></input>
                                 </label>
                                 <label for="check_read" class="error"></label>
                             </div>
