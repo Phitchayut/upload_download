@@ -24,60 +24,66 @@ require_once '../../backend/config/connect.php';
     <div class="container d-flex justify-content-center">
         <div class="card w-75 mt-5">
             <div class="card-body">
-                    <form action="register_db.php" method="post">
-                        <h3 class="text-center">Register</h3>
-                        <?php if (isset($_SESSION['error'])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php
-                                echo $_SESSION['error'];
-                                unset($_SESSION['error']);
-                                ?>
-                            </div>
-                        <?php } ?>
-                        <?php if (isset($_SESSION['success'])) { ?>
-                            <div class="alert alert-success" role="alert">
-                                <?php
-                                echo $_SESSION['success'];
-                                unset($_SESSION['success']);
-                                ?>
-                            </div>
-                        <?php } ?>
-                        <?php if (isset($_SESSION['warning'])) { ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php
-                                echo $_SESSION['warning'];
-                                unset($_SESSION['warning']);
-                                ?>
-                            </div>
-                        <?php } ?>
-                        <div class="form-outline mb-4">
-                            <input type="text" id="username" name="username" class="form-control" />
-                            <label class="form-label" for="username">Username</label>
+                <form action="register_db.php" method="post">
+                    <h3 class="text-center">Register</h3>
+                    <?php if (isset($_SESSION['error'])) { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php
+                            echo $_SESSION['error'];
+                            unset($_SESSION['error']);
+                            ?>
                         </div>
+                    <?php } ?>
+                    <?php if (isset($_SESSION['success'])) { ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php
+                            echo $_SESSION['success'];
+                            unset($_SESSION['success']);
+                            ?>
+                        </div>
+                    <?php } ?>
+                    <?php if (isset($_SESSION['warning'])) { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php
+                            echo $_SESSION['warning'];
+                            unset($_SESSION['warning']);
+                            ?>
+                        </div>
+                    <?php } ?>
+                    <div class="form-outline mb-4">
+                        <input type="text" id="username" name="username" class="form-control" />
+                        <label class="form-label" for="username">Username</label>
+                    </div>
 
-                        <!-- Department input -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="department" name="department" class="form-control" />
-                            <label class="form-label" for="department">Department</label>
-                        </div>
+                    <!-- Department input -->
+                    <div class="mb-4">
+                        <select class="form-select form-control" aria-label="Default select example" id="department" name="department">
+                            <option selected>Department</option>
+                            <optgroup label="ฝ่ายบริการสมาชิก">
+                                <option value="ส่วนงานทะเบียน">ส่วนงานทะเบียน</option>
+                                <option value="ส่วนงานกำกับดูแลหน่วยอบรม">ส่วนงานกำกับดูแลหน่วยอบรม</option>
+                            </optgroup>
+                                <option value="ส่วนงานพัฒนาระบบสารสนเทศ">ส่วนงานพัฒนาระบบสารสนเทศ</option>
+                        </select>
+                    </div>
 
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="email" name="email" class="form-control" />
-                            <label class="form-label" for="email">Email</label>
-                        </div>
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="email" name="email" class="form-control" />
+                        <label class="form-label" for="email">Email</label>
+                    </div>
 
-                        <!-- Password input -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="password" name="password" class="form-control" />
-                            <label class="form-label" for="password">Password</label>
-                        </div>
-                        <!-- Submit button -->
-                        <button type="submit" name='register' class="btn btn-primary btn-block mb-3">Sign in</button>
-                        <div class="text-center">
-                            <p>Are you member? <a href="../../index.php">Login</a></p>
-                        </div>
-                    </form>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="password" name="password" class="form-control" />
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+                    <!-- Submit button -->
+                    <button type="submit" name='register' class="btn btn-primary btn-block mb-3">Sign in</button>
+                    <div class="text-center">
+                        <p>Are you member? <a href="../../index.php">Login</a></p>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
